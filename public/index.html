@@ -1,0 +1,101 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>TasteTrip · Trips planned around your taste</title>
+  <meta name="description" content="An AI travel agent that turns your favorite music, films, books and food into a city itinerary, grounded in Qloo's taste graph." />
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><circle cx='16' cy='16' r='14' fill='%23c4532d'/><path d='M10 20l6-10 6 10' stroke='white' stroke-width='3' fill='none' stroke-linecap='round' stroke-linejoin='round'/></svg>" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <header class="top">
+    <div class="wrap top-inner">
+      <a class="brand" href="/"><span class="logo" aria-hidden="true"></span>TasteTrip</a>
+      <span class="powered">Agent grounded in <strong>Qloo</strong> Taste AI</span>
+    </div>
+  </header>
+
+  <main class="wrap layout">
+    <section class="panel form-panel" aria-labelledby="form-title">
+      <h1 id="form-title">Trips planned around <em>your</em> taste.</h1>
+      <p class="lede">Tell the agent what you love. It asks Qloo's taste graph where people who share those tastes actually go in your destination, then builds the itinerary from those results only.</p>
+
+      <div class="presets" aria-label="Example travelers">
+        <span>Try:</span>
+        <button type="button" data-preset="0">Indie music fan in Tokyo</button>
+        <button type="button" data-preset="1">Film buff in Paris</button>
+        <button type="button" data-preset="2">Foodie bookworm in Lisbon</button>
+      </div>
+
+      <form id="trip-form" novalidate>
+        <div class="row">
+          <label class="field grow">Destination city
+            <input name="destination" required maxlength="80" placeholder="e.g. Lisbon" autocomplete="off" />
+          </label>
+          <label class="field small">Days
+            <select name="days">
+              <option>1</option><option selected>2</option><option>3</option><option>4</option><option>5</option>
+            </select>
+          </label>
+        </div>
+        <label class="field">Music &amp; artists you love
+          <input name="music" maxlength="200" placeholder="e.g. Radiohead, Khruangbin" />
+        </label>
+        <label class="field">Films &amp; TV
+          <input name="film" maxlength="200" placeholder="e.g. In the Mood for Love, The Bear" />
+        </label>
+        <label class="field">Books &amp; authors
+          <input name="books" maxlength="200" placeholder="e.g. Haruki Murakami" />
+        </label>
+        <label class="field">Food you crave
+          <input name="food" maxlength="200" placeholder="e.g. natural wine, ramen, vegan" />
+        </label>
+        <div class="row">
+          <label class="field grow">Vibe
+            <input name="vibe" maxlength="200" placeholder="e.g. cozy, late-night, hidden gems" />
+          </label>
+          <label class="field small">Budget
+            <select name="budget">
+              <option value="">Any</option><option>Budget</option><option>Mid-range</option><option>Splurge</option>
+            </select>
+          </label>
+        </div>
+        <p class="hint">Only enter tastes, never personal details. Qloo results describe aggregate audience affinities, not you.</p>
+        <button class="go" type="submit" id="go">Plan my trip</button>
+        <p class="error" id="form-error" role="alert" hidden></p>
+      </form>
+    </section>
+
+    <section class="results" aria-live="polite">
+      <div id="empty" class="empty">
+        <div class="empty-art" aria-hidden="true"></div>
+        <h2>Your itinerary will appear here</h2>
+        <p>Every stop comes from a live Qloo result and shows its affinity score, so you can see <em>why</em> it was picked.</p>
+      </div>
+
+      <div id="progress" class="panel progress" hidden>
+        <div class="progress-head"><span class="spinner" aria-hidden="true"></span><span id="status-text">Starting…</span></div>
+        <ol id="log" class="log"></ol>
+      </div>
+
+      <article id="plan" class="plan" hidden></article>
+
+      <details id="evidence" class="panel evidence" hidden>
+        <summary>How Qloo shaped this trip <span id="evidence-count"></span></summary>
+        <ol id="evidence-list" class="log"></ol>
+      </details>
+    </section>
+  </main>
+
+  <footer class="wrap foot">
+    Built for the Qloo Agentic Hackathon · Recommendations from <a href="https://www.qloo.com" target="_blank" rel="noopener">Qloo</a>'s Taste AI, planning by Google Gemini ·
+    <a href="https://github.com/Kashifalirajper/tastetrip" target="_blank" rel="noopener">Source (MIT)</a>
+  </footer>
+
+  <script src="app.js" type="module"></script>
+</body>
+</html>
