@@ -1,0 +1,25 @@
+{
+  "name": "tastetrip",
+  "version": "1.0.0",
+  "description": "TasteTrip: an agentic trip planner that grounds every pick in Qloo's taste graph.",
+  "type": "module",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js",
+    "dev": "node --watch server.js",
+    "mock": "MOCK_QLOO=1 MOCK_LLM=1 node server.js",
+    "test": "node --test test/*.test.js"
+  },
+  "engines": {
+    "node": ">=22.19.0"
+  },
+  "keywords": ["qloo", "agent", "mcp", "gemini", "travel", "hackathon"],
+  "author": "Kashif Ali",
+  "license": "MIT",
+  "dependencies": {
+    "@google/genai": "^2.30.0",
+    "@modelcontextprotocol/sdk": "^1.32.1",
+    "@qloo/qloo-harness": "0.1.26",
+    "express": "^5.3.0"
+  }
+}
